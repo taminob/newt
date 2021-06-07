@@ -569,6 +569,9 @@ static struct eventResult listboxEvent(newtComponent co, struct event ev) {
 	       hold space to select a bunch of items in a list at once */
 
 	  case NEWT_KEY_DOWN:
+#ifdef NEWT_ENABLE_VI_CONTROLS
+      case 'j':
+#endif
 	    if(li->numItems <= 0) break;
 	    if(li->currItem < li->numItems - 1) {
 		li->currItem++;
@@ -586,12 +589,18 @@ static struct eventResult listboxEvent(newtComponent co, struct event ev) {
 	    break;
 
 	  case NEWT_KEY_ENTER:
+#ifdef NEWT_ENABLE_VI_CONTROLS
+      case 'l':
+#endif
 	    if(li->numItems <= 0) break;
 	    if(li->flags & NEWT_FLAG_RETURNEXIT)
 		er.result = ER_EXITFORM;
 	    break;
 
 	  case NEWT_KEY_UP:
+#ifdef NEWT_ENABLE_VI_CONTROLS
+      case 'k':
+#endif
 	    if(li->numItems <= 0) break;
 	    if(li->currItem > 0) {
 		li->currItem--;

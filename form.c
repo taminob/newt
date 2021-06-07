@@ -488,6 +488,10 @@ newtComponent newtForm(newtComponent vertBar, void * help, int flags) {
     form->helpTag = help;
     form->helpCb = helpCallback;
 
+#ifdef NEWT_ENABLE_VI_CONTROLS
+	newtFormAddHotKey(co, 'h');
+#endif
+
     return co;
 }
 
