@@ -568,6 +568,13 @@ static struct eventResult listboxEvent(newtComponent co, struct event ev) {
 	    /* We don't break here, because it is cool to be able to
 	       hold space to select a bunch of items in a list at once */
 
+#ifdef NEWT_ENABLE_VI_CONTROLS
+      case 'h':
+#endif
+        // todo: go back
+        //er.result=ER_EXITFORM;
+        break;
+
 	  case NEWT_KEY_DOWN:
 #ifdef NEWT_ENABLE_VI_CONTROLS
       case 'j':
