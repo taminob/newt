@@ -491,6 +491,7 @@ newtComponent newtForm(newtComponent vertBar, void * help, int flags) {
 #ifdef NEWT_ENABLE_VI_CONTROLS
 	newtFormAddHotKey(co, 'h');
 #endif
+	newtFormAddHotKey(co, '\x03'); // exit using Ctrl-C
 
     return co;
 }
