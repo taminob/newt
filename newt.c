@@ -75,13 +75,17 @@ const struct newtColors newtDefaultColorPalette = {
 
 static const struct keymap keymap[] = {
 	{ "\033OA", 		NEWT_KEY_UP, 		"ku" },
-	{ "\020", 		NEWT_KEY_UP, 		NULL }, /* emacs ^P */
+	{ "\020",               NEWT_KEY_UP,            NULL }, /* emacs ^P */
+	{ "\013", 		    NEWT_KEY_UP, 		NULL }, /* vi-like ^K */
 	{ "\033OB", 		NEWT_KEY_DOWN, 		"kd" },
 	{ "\016", 		NEWT_KEY_DOWN, 		NULL }, /* emacs ^N */
+	{ "\012",			NEWT_KEY_DOWN, 		NULL }, /* vi-like ^J */
 	{ "\033OC", 		NEWT_KEY_RIGHT, 	"kr" },
 	{ "\006", 		NEWT_KEY_RIGHT, 	NULL }, /* emacs ^F */
+	{ "\014",			NEWT_KEY_RIGHT, 	NULL }, /* vi-like ^L */
 	{ "\033OD", 		NEWT_KEY_LEFT, 		"kl" },
 	{ "\002", 		NEWT_KEY_LEFT, 		NULL }, /* emacs ^B */
+	{ "\008",			NEWT_KEY_LEFT, 		NULL }, /* vi-like ^H */
 	{ "\033OH",		NEWT_KEY_HOME, 		"kh" },
 	{ "\033[1~",		NEWT_KEY_HOME, 		NULL },
 	{ "\001",		NEWT_KEY_HOME, 		NULL }, /* emacs ^A */
@@ -212,7 +216,7 @@ void trim_string(char *title, int chrs)
 static int getkey() {
     int c;
 
-    while ((c = SLang_getkey()) == '\xC') { /* if Ctrl-L redraw whole screen */
+    while ((c = SLang_getkey()) == '\x12') { /* if Ctrl-R redraw whole screen */
         SLsmg_touch_lines(0, SLtt_Screen_Rows);
         SLsmg_refresh();
     }
